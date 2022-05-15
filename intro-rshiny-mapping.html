@@ -44,6 +44,7 @@ class: left, top
 
 # Why I love interactive mapping with Rshiny
 
+Many thanks to this awesome [book](https://mastering-shiny.org/index.html)
 --
 
 Open Science
@@ -52,16 +53,118 @@ Open Science
 
 Publishing is changing
 ---
+# What is Rshiny?
 
-# What do I need to know? 
+Web apps!
 
-1. Basics of making an app (UI, Server, etc.)
-2. How to make a map
-3. How to make a dashboard
+Getting your science out there, people can use it.
+
+Why R? 
+
+Can use it to make CUSTOMISED apps without knowing HTML, CSS, JavaScript
+
+Cons: requires app to be hosted on a server rather than directly on a web browser
+---
+# Who uses Rshiny?
+
+show examples
+Academics - teaching stats, communicating research, making it open
+Silicon Valley tech companies
+---
+# Key concepts
+
+1. User Interface (UI)
+2. Reactive programming
+3. Widgets
+---
+# The theory of reactivity
+
+Reactivity = Interactivity
+
+New style of programming
+Providing a recipe for inputs to turn into outputs
+Different from writing a normal script
+
+This happens in the server function (every end-user sees the same UI) - creates new local environment independent of every other end-users server.
+
+Imperative vs. declarative coding.
 
 ---
-# What package should I use?
+# App basics
 
+Frontend (what end-user sees), backend (what you code)
+User interface (how it looks)
+Server function (how it workds)
+Reactive programming and reactive expressions
+
+---
+# What package should I use for interactive web maps?
+
+
+---
+# Shiny in production
+
+Deploying your app
+Making it availalbe to anyone with a web browser
+Share on a server
+
+What is a server?
+
+shinyapps.io 
+Free but slow, plus subscription options
+There are other servers out there too. 
+
+[See here for more info](https://shiny.rstudio.com/articles/shiny-server.html)
+---
+Let's get started
+
+Open 'app.R' file
+File | New Project, then selecting New Directory and Shiny Web Application.
+
+Basics 
+shiny R package
+Define ui - (i.e. the HTML webpage human interact with)
+Define server - what can our app do?
+Execute the app (shinyApp function)
+---
+# setting up your UI
+
+Layout function fluidPage - layout function, what goes where?
+
+How do we let end-users interact? Inputs.
+Widgets - e.g., selectInput, etc.
+
+How does shiny react to end-user inputs?
+Outputs. We define those in the UI too.
+
+(Fancy ways to generate HTML)
+---
+# Bringing outputs to life
+
+Reactive programming = interactive
+
+`It’s like the difference between giving someone a recipe versus demanding that they go make you a sandwich.`
+
+Give a recipe
+
+When inputs change, app will react and outputs will change based on recipe.
+
+Server is essentially a function with input, output, session arguments.
+
+Server connects the inputs and outputs - fully functional app.
+
+Provide a recipe for each shiny output with a specific ID.
+
+Render functions wrap up the recipe.
+
+---
+# Duplicated code
+
+Usually capture value using a variable, or capture computation with a function.
+
+Shiny answer: reactive expressions
+
+Assign reactive expression to a variable, and can call it like a function
 
 ---
 background-image: url(https://upload.wikimedia.org/wikipedia/commons/b/be/Sharingan_triple.svg)
@@ -251,9 +354,18 @@ coef(summary(fit))
 ```
 
 ```
-#               Estimate Std. Error   t value     Pr(&gt;|t|)
-# (Intercept) -17.579095  6.7584402 -2.601058 1.231882e-02
-# speed         3.932409  0.4155128  9.463990 1.489836e-12
+#               Estimate
+# (Intercept) -17.579095
+# speed         3.932409
+#             Std. Error
+# (Intercept)  6.7584402
+# speed        0.4155128
+#               t value
+# (Intercept) -2.601058
+# speed        9.463990
+#                 Pr(&gt;|t|)
+# (Intercept) 1.231882e-02
+# speed       1.489836e-12
 ```
 
 ```r
@@ -363,8 +475,8 @@ library(leaflet)
 leaflet() %&gt;% addTiles() %&gt;% setView(-93.65, 42.0285, zoom = 17)
 ```
 
-<div id="htmlwidget-6c9ea665606a8e9597c3" style="width:100%;height:432px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-6c9ea665606a8e9597c3">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]}],"setView":[[42.0285,-93.65],17,[]]},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-73493fdfd093e1111faf" style="width:100%;height:432px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-73493fdfd093e1111faf">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]}],"setView":[[42.0285,-93.65],17,[]]},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -376,8 +488,8 @@ DT::datatable(
 )
 ```
 
-<div id="htmlwidget-e83005bdd6a50bd32fb2" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e83005bdd6a50bd32fb2">{"x":{"filter":"none","vertical":false,"fillContainer":false,"data":[["1","2","3","4","5","6","7","8","9","10"],[5.1,4.9,4.7,4.6,5,5.4,4.6,5,4.4,4.9],[3.5,3,3.2,3.1,3.6,3.9,3.4,3.4,2.9,3.1],[1.4,1.4,1.3,1.5,1.4,1.7,1.4,1.5,1.4,1.5],[0.2,0.2,0.2,0.2,0.2,0.4,0.3,0.2,0.2,0.1],["setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Sepal.Length<\/th>\n      <th>Sepal.Width<\/th>\n      <th>Petal.Length<\/th>\n      <th>Petal.Width<\/th>\n      <th>Species<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":8,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[8,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-381027c82e23c074e908" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-381027c82e23c074e908">{"x":{"filter":"none","vertical":false,"fillContainer":false,"data":[["1","2","3","4","5","6","7","8","9","10"],[5.1,4.9,4.7,4.6,5,5.4,4.6,5,4.4,4.9],[3.5,3,3.2,3.1,3.6,3.9,3.4,3.4,2.9,3.1],[1.4,1.4,1.3,1.5,1.4,1.7,1.4,1.5,1.4,1.5],[0.2,0.2,0.2,0.2,0.2,0.4,0.3,0.2,0.2,0.1],["setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Sepal.Length<\/th>\n      <th>Sepal.Width<\/th>\n      <th>Petal.Length<\/th>\n      <th>Petal.Width<\/th>\n      <th>Species<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":8,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[8,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -561,13 +673,27 @@ head(iris)
 
 
 ```
-*##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-## 1          5.1         3.5          1.4         0.2  setosa
-*## 2          4.9         3.0          1.4         0.2  setosa
-## 3          4.7         3.2          1.3         0.2  setosa
-## 4          4.6         3.1          1.5         0.2  setosa
-## 5          5.0         3.6          1.4         0.2  setosa
-## 6          5.4         3.9          1.7         0.4  setosa
+*##   Sepal.Length Sepal.Width
+## 1          5.1         3.5
+*## 2          4.9         3.0
+## 3          4.7         3.2
+## 4          4.6         3.1
+## 5          5.0         3.6
+## 6          5.4         3.9
+##   Petal.Length Petal.Width
+## 1          1.4         0.2
+## 2          1.4         0.2
+## 3          1.3         0.2
+## 4          1.5         0.2
+## 5          1.4         0.2
+## 6          1.7         0.4
+##   Species
+## 1  setosa
+## 2  setosa
+## 3  setosa
+## 4  setosa
+## 5  setosa
+## 6  setosa
 ```
 
 Question: what does `highlight.output = c(TRUE, FALSE)` mean? (Hint: think about R's recycling of vectors)
