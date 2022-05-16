@@ -32,44 +32,56 @@ class: center, middle, inverse, title-slide
 # Interactive mapping with RShiny
 ]
 .subtitle[
-## Engaging end-users with research
+## <em>to engage end-users with research</em>
 ]
 .author[
 ### Christina Buelow
+]
+.institute[
+### Made for RLadies Brisbane (May 2022)
 ]
 
 ---
 
 class: left, top
 
-# Why I love interactive mapping with Rshiny
+# Our journey in Maps and Apps...
 
-Many thanks to this awesome [book](https://mastering-shiny.org/index.html)
---
-
-Open Science
+1. The basics of programming for interactivity: *Reactivity*
 
 --
 
-Publishing is changing
+2. What are our options for mapping interactively in R?
+--
+
+3. Make an interactive map and share in a web app. 
+
 ---
-# What is Rshiny?
+# Why interactive and why Shiny?
 
-Web apps!
+--
+### Open Science
+  - Web apps are a great way to make our research open and transparent
+  
+--
 
-Getting your science out there, people can use it.
+### Shiny 
+  - Nice and performative apps without HTML, javascript, CSS...
+--
 
-Why R? 
+  - Range of users - academics to tech companies 
+  
+--
+  
+  - BUT, needs to be hosted on a server instead of directly on a web browser
+--
 
-Can use it to make CUSTOMISED apps without knowing HTML, CSS, JavaScript
+    - shinyapps.io: free or subscription options
+    - [See here for more info on Rshiny servers](https://shiny.rstudio.com/articles/shiny-server.html)
+    - There are other 'non-R' server options out there too
 
-Cons: requires app to be hosted on a server rather than directly on a web browser
----
-# Who uses Rshiny?
-
-show examples
-Academics - teaching stats, communicating research, making it open
-Silicon Valley tech companies
+--
+Also, many thanks to this awesome [book](https://mastering-shiny.org/index.html) for informing much  of this tutorial.
 ---
 # Key concepts
 
@@ -77,7 +89,7 @@ Silicon Valley tech companies
 2. Reactive programming
 3. Widgets
 ---
-# The theory of reactivity
+# Interactivity = Reactive programming
 
 Reactivity = Interactivity
 
@@ -101,20 +113,7 @@ Reactive programming and reactive expressions
 # What package should I use for interactive web maps?
 
 
----
-# Shiny in production
 
-Deploying your app
-Making it availalbe to anyone with a web browser
-Share on a server
-
-What is a server?
-
-shinyapps.io 
-Free but slow, plus subscription options
-There are other servers out there too. 
-
-[See here for more info](https://shiny.rstudio.com/articles/shiny-server.html)
 ---
 Let's get started
 
@@ -354,18 +353,9 @@ coef(summary(fit))
 ```
 
 ```
-#               Estimate
-# (Intercept) -17.579095
-# speed         3.932409
-#             Std. Error
-# (Intercept)  6.7584402
-# speed        0.4155128
-#               t value
-# (Intercept) -2.601058
-# speed        9.463990
-#                 Pr(&gt;|t|)
-# (Intercept) 1.231882e-02
-# speed       1.489836e-12
+#               Estimate Std. Error   t value     Pr(&gt;|t|)
+# (Intercept) -17.579095  6.7584402 -2.601058 1.231882e-02
+# speed         3.932409  0.4155128  9.463990 1.489836e-12
 ```
 
 ```r
@@ -475,8 +465,8 @@ library(leaflet)
 leaflet() %&gt;% addTiles() %&gt;% setView(-93.65, 42.0285, zoom = 17)
 ```
 
-<div id="htmlwidget-73493fdfd093e1111faf" style="width:100%;height:432px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-73493fdfd093e1111faf">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]}],"setView":[[42.0285,-93.65],17,[]]},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-3ee2881c1bb51e197297" style="width:100%;height:432px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3ee2881c1bb51e197297">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]}],"setView":[[42.0285,-93.65],17,[]]},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -488,8 +478,8 @@ DT::datatable(
 )
 ```
 
-<div id="htmlwidget-381027c82e23c074e908" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-381027c82e23c074e908">{"x":{"filter":"none","vertical":false,"fillContainer":false,"data":[["1","2","3","4","5","6","7","8","9","10"],[5.1,4.9,4.7,4.6,5,5.4,4.6,5,4.4,4.9],[3.5,3,3.2,3.1,3.6,3.9,3.4,3.4,2.9,3.1],[1.4,1.4,1.3,1.5,1.4,1.7,1.4,1.5,1.4,1.5],[0.2,0.2,0.2,0.2,0.2,0.4,0.3,0.2,0.2,0.1],["setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Sepal.Length<\/th>\n      <th>Sepal.Width<\/th>\n      <th>Petal.Length<\/th>\n      <th>Petal.Width<\/th>\n      <th>Species<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":8,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[8,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-8361599b396cb54618e2" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8361599b396cb54618e2">{"x":{"filter":"none","vertical":false,"fillContainer":false,"data":[["1","2","3","4","5","6","7","8","9","10"],[5.1,4.9,4.7,4.6,5,5.4,4.6,5,4.4,4.9],[3.5,3,3.2,3.1,3.6,3.9,3.4,3.4,2.9,3.1],[1.4,1.4,1.3,1.5,1.4,1.7,1.4,1.5,1.4,1.5],[0.2,0.2,0.2,0.2,0.2,0.4,0.3,0.2,0.2,0.1],["setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Sepal.Length<\/th>\n      <th>Sepal.Width<\/th>\n      <th>Petal.Length<\/th>\n      <th>Petal.Width<\/th>\n      <th>Species<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":8,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[8,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -673,27 +663,13 @@ head(iris)
 
 
 ```
-*##   Sepal.Length Sepal.Width
-## 1          5.1         3.5
-*## 2          4.9         3.0
-## 3          4.7         3.2
-## 4          4.6         3.1
-## 5          5.0         3.6
-## 6          5.4         3.9
-##   Petal.Length Petal.Width
-## 1          1.4         0.2
-## 2          1.4         0.2
-## 3          1.3         0.2
-## 4          1.5         0.2
-## 5          1.4         0.2
-## 6          1.7         0.4
-##   Species
-## 1  setosa
-## 2  setosa
-## 3  setosa
-## 4  setosa
-## 5  setosa
-## 6  setosa
+*##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+*## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa
 ```
 
 Question: what does `highlight.output = c(TRUE, FALSE)` mean? (Hint: think about R's recycling of vectors)

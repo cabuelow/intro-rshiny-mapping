@@ -1,8 +1,8 @@
 ---
 title: "Interactive mapping with RShiny"
-subtitle: "Engaging end-users with research"
+subtitle: "*to engage end-users with research*"
 author: "Christina Buelow"
-#institute: "RStudio, PBC"
+institute: "Made for RLadies Brisbane (May 2022)"
 #date: "2022/05/26 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
@@ -14,34 +14,43 @@ output:
 ---
 class: left, top
 
-# Why I love interactive mapping with Rshiny
+# Our journey in Maps and Apps...
 
-Many thanks to this awesome [book](https://mastering-shiny.org/index.html)
---
-
-Open Science
+1. The basics of programming for interactivity: *Reactivity*
 
 --
 
-Publishing is changing
+2. What are our options for mapping interactively in R?
+--
+
+3. Make an interactive map and share in a web app. 
+
 ---
-# What is Rshiny?
+# Why interactive and why Shiny?
 
-Web apps!
+--
+### Open Science
+  - Web apps are a great way to make our research open and transparent
+  
+--
 
-Getting your science out there, people can use it.
+### Shiny 
+  - Nice and performative apps without HTML, javascript, CSS...
+--
 
-Why R? 
+  - Range of users - academics to tech companies 
+  
+--
+  
+  - BUT, needs to be hosted on a server instead of directly on a web browser
+--
 
-Can use it to make CUSTOMISED apps without knowing HTML, CSS, JavaScript
+    - shinyapps.io: free or subscription options
+    - [See here for more info on Rshiny servers](https://shiny.rstudio.com/articles/shiny-server.html)
+    - There are other 'non-R' server options out there too
 
-Cons: requires app to be hosted on a server rather than directly on a web browser
----
-# Who uses Rshiny?
-
-show examples
-Academics - teaching stats, communicating research, making it open
-Silicon Valley tech companies
+--
+Also, many thanks to this awesome [book](https://mastering-shiny.org/index.html) for informing much  of this tutorial.
 ---
 # Key concepts
 
@@ -49,7 +58,7 @@ Silicon Valley tech companies
 2. Reactive programming
 3. Widgets
 ---
-# The theory of reactivity
+# Interactivity = Reactive programming
 
 Reactivity = Interactivity
 
@@ -73,20 +82,7 @@ Reactive programming and reactive expressions
 # What package should I use for interactive web maps?
 
 
----
-# Shiny in production
 
-Deploying your app
-Making it availalbe to anyone with a web browser
-Share on a server
-
-What is a server?
-
-shinyapps.io 
-Free but slow, plus subscription options
-There are other servers out there too. 
-
-[See here for more info](https://shiny.rstudio.com/articles/shiny-server.html)
 ---
 Let's get started
 
