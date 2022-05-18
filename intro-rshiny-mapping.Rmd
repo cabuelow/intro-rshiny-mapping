@@ -52,36 +52,163 @@ class: left, top
 --
 Also, many thanks to this awesome [book](https://mastering-shiny.org/index.html) for informing much  of this tutorial.
 ---
-# Key concepts
+# App fundamentals
 
-1. User Interface (UI)
-2. Reactive programming
-3. Widgets
+Interactivity requires *Reactivity*
+
+What is reactive programming?
+
+  - Outputs react to inputs
+  - Follow a recipe that we (the programmers) provide
+  - It's different from how we normally code our scripts
+    - Recipes vs. commands
+    - Imperative vs. declarative
+    - Assertive vs. passive-aggressive
 ---
-# Interactivity = Reactive programming
 
-Reactivity = Interactivity
+# Shiny
 
-New style of programming
-Providing a recipe for inputs to turn into outputs
-Different from writing a normal script
+Shiny provides a framework for reactive programming:
+  - User-interface (ui): how it looks. Takes *inputs* and displays *outputs*
+  - Server: follows the recipe to turn inputs into outputs
 
-This happens in the server function (every end-user sees the same UI) - creates new local environment independent of every other end-users server.
+*hint*: if you have {shiny} installed, just type `shinyapp` in your R script to insert boilerplate shiny app code to get started quickly
 
-Imperative vs. declarative coding.
+```{r}
+library(shiny)
+
+ui <- fluidPage(
+  
+)
+
+server <- function(input, output, session) {
+  
+}
+
+shinyApp(ui, server)
+```
+
+* Here pause to do this together in R. Show what fluidPage means using shiny cheat-sheet.
+* ui and server can be stored as different objects in an app.R script and deployed with shinyApp function
+* or, for more complex apps, split and save as separate ui.R and server.R scripts
+* Discuss input (widget) vs. output (render) functions in R
+* Run the example in the cheet sheet, just to show how a basic app works
+---
+
+```{r}
+library(shiny)
+
+ui <- fluidPage(
+  numericInput(inputId = "n", "Sample size", value = 25), 
+  plotOutput(outputId = "hist")
+)
+
+server <- function(input, output, session) {
+  output$hist <- renderPlot({
+    hist(rnorm(input$n))
+    })
+}
+
+shinyApp(ui, server)
+```
+---
+
+# But what about maps?
+
+My go-to for mapping in R these days is `tmap`
+
+One of the reasons is that I can make either interactive or static, publication-quality maps with ease. Just set the 'mode'.
+
+```{r}
+library(tmap)
+data('World')
+
+tmap_mode('view')
+qtm(World, 'name') # qtm stands for 'quick thematic mapper'
+```
+---
+# Share with shiny
+
+If we're in a hurry, we can put our interactive `tmap` in a web app to share
+
+```{r}
+library(shiny)
+library(tmap)
+data('World')
+
+ui <- fluidPage(
+  tmapOutput('map')
+)
+
+server <- function(input, output, session) {
+  output$map <- renderTmap({
+    qtm(World, 'name')
+  })
+}
+
+shinyApp(ui, server)
+```
 
 ---
-# App basics
+# Add some more *reactivity*
 
-Frontend (what end-user sees), backend (what you code)
-User interface (how it looks)
-Server function (how it workds)
-Reactive programming and reactive expressions
+Let's add a widget to allow users to choose their country from a list
+
+```{r}
+library(shiny)
+library(tmap)
+library(dplyr)
+data('World')
+
+ui <- fluidPage(
+  tmapOutput('map'),
+  selectInput('var', 'Select country',
+              choices = c('Global', as.character(World$name)),
+              selected = 'Global')
+)
+
+server <- function(input, output, session) {
+  output$map <- renderTmap({
+    if(input$var == 'Global'){
+      qtm(World, 'name')
+    }else{
+      qtm(filter(World, name == input$var))
+    }
+  })
+}
+
+shinyApp(ui, server)
+
+```
 
 ---
-# What package should I use for interactive web maps?
 
+# Customisability and scalability
 
+What package should I use for interactive web maps?
+
+SVG vs. WebGL
+
+Leaflet vs. Mapdeck
+
+Feature vs. speed trade-off
+
+Some say more fine-grained control with mapdeck
+
+Recommend choosing based on needs, start with simplest, but if have large, complex app, go with Mapdeck
+---
+
+# Leaflet example
+
+---
+
+Just scratching the surface
+
+More complicated apps:
+
+- Modules
+- Caching
+-etc....
 
 ---
 Let's get started
@@ -126,6 +253,9 @@ Provide a recipe for each shiny output with a specific ID.
 Render functions wrap up the recipe.
 
 ---
+
+
+
 # Duplicated code
 
 Usually capture value using a variable, or capture computation with a function.
