@@ -204,11 +204,23 @@ Recommend choosing based on needs, start with simplest, but if have large, compl
 
 Just scratching the surface
 
-More complicated apps:
+Lots of complex polygons?
+Use rmapshaper to simplify
 
+More complicated apps, the 'cliff of complexity'
+Check out this [book](https://engineering-shiny.org/successful-shiny-app.html)
 - Modules
 - Caching
 -etc....
+To reiterate the section on “Improving performance and scalability” in shiny from Cheng (2018a), you have a number of tools available to address performance:
+
+The profvis package for profiling code.
+Cache computations ahead-of-time.
+Cache computations at run time.
+Cache computations through chaining reactive expressions.
+Leverage multiple R processes and/or servers.
+Async programming with promises
+
 
 ---
 Let's get started
