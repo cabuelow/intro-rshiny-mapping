@@ -229,19 +229,77 @@ shinyApp(ui, server)
 
 ---
 
-# Customisability and scalability
+# Customising and scaling your interactive map
 
-What package should I use for interactive web maps?
+If you want to **customise** your map with more *features*, the [leaflet](https://rstudio.github.io/leaflet/) R package offers some nice functionality (there are others too)
 
-SVG vs. WebGL
+--
 
-Leaflet vs. Mapdeck
+{tmap} and {leaflet} both use **'scalable vector graphics'** (SVG) to visualise maps on the web
 
-Feature vs. speed trade-off
+--
 
-Some say more fine-grained control with mapdeck
+  - This is fine for simple apps, but if you need to render large datasets or do complex computations they will be really slow
 
-Recommend choosing based on needs, start with simplest, but if have large, complex app, go with Mapdeck
+--
+
+**Scaling-up** your map app will require graphics to be rendered in **'WebGL'** instead of SVG
+
+--
+
+  - There are several R packages to try including [mapdeck](https://symbolixau.github.io/mapdeck/articles/mapdeck.html) and [rdeck](https://github.com/anthonynorth/rdeck)
+--
+
+  - These usually require API tokens to access basemaps from [mapbox](https://www.mapbox.com/)
+
+--
+
+Should I go **SVG** or **WebGL**?
+
+  - Generally I've found there is a **feature vs. speed trade-off**
+  - Recommend start with **SVG** and if too slow then move to **WebGL** 
+
+???
+
+What are my interactive web mapping options?
+
+Interactive web visualisations:
+Options for graphics on the web:
+
+SVG (Scalable vector graphics) - simplest option, but not scalable, can’t handle large datasets. This is leaflet
+WebGL - good if you have lots of data to render in browser (points/polygons), need to perform lots of data calculations, want to animate
+
+WebGL can be used to visualize large, complex graphics with excellent performance. WebGL provides an API that allows you to write low-level code for creating rasterized images. This code is run on your computer's GPU instead of CPU, allowing large data to be processed in parallel.
+
+WebGL = Performance!!
+
+But complex b/c works with low level code
+
+So pick what you need depending on use-case. Only go up the ladder when not performing.
+
+—
+Mapbox - base map provider (also Google Maps, ArcGIS, etc)
+
+
+Leaflet vs leafgl vs mapveiew vs map deck vs rdeck
+
+Map deck
+- No feature click popsps
+- Needs an API key
+- Offers some cool functions
+    - Heat map, grid map column plots
+- Can render large datasets
+
+Mapdeck has more fine grained controlled than map view
+
+Rdeck
+
+In short it's a similar premise to {mapdeck} but implemented in a different way which comes with many benefits. It supports much more of http://deck.gl (almost all of it), it uses less data, has a ggppot2 scale-style approach to legends, built in layer selector...
+
+Mapbox - base maps
+
+API - Application programming interface
+
 ---
 
 # Leaflet example
