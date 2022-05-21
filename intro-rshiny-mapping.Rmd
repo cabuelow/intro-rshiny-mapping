@@ -55,7 +55,7 @@ class: left, top
 
 --
 #### Server options:
-  - shinyapps.io: free or subscription options
+  - [shinyapps.io](https://www.shinyapps.io/): free or subscription options
   - [See here for more info on Rshiny servers](https://shiny.rstudio.com/articles/shiny-server.html)
   - There are other 'non-R' server options out there too
 ---
@@ -73,7 +73,7 @@ What is **reactive programming**?
     - Means computations are only done when necessary (moving beyond **functions** to **reactions**)
 
 --
-    - Reactive expressions are **lazy** and **cached**
+    - Reactive contexts are **lazy** and **cached**
 
 --
 
@@ -196,7 +196,7 @@ shinyApp(ui, server)
 ```
 
 ---
-# Add some more *reactivity*
+# Add some reactivity
 
 Let's add a widget to allow users to choose their country from a list
 

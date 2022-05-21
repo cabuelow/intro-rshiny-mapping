@@ -13,5 +13,4 @@
 
 #### TODO
 
-1. First make an rmd. with notes, aims 1 and 2
-2. Make a Shiny app template for aim 3
+- [ ] Make a leaflet example
