@@ -304,15 +304,20 @@ API - Application programming interface
 
 # Leaflet example
 
+
+
 ---
 
-Just scratching the surface
+# Tips and tricks
 
 Lots of complex polygons?
-Use rmapshaper to simplify
+Use [rmapshaper](https://cran.r-project.org/web/packages/rmapshaper/vignettes/rmapshaper.html) to simplify, this can really **speed up** a slow map app
 
-More complicated apps, the 'cliff of complexity'
-Check out this [book](https://engineering-shiny.org/successful-shiny-app.html)
+Have you reached the **'cliff of complexity'**?
+Check out [Engineering production grade shiny apps](https://engineering-shiny.org/successful-shiny-app.html)
+
+
+???
 - Modules
 - Caching
 -etc....
