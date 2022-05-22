@@ -10,7 +10,3 @@
 2. To provide an overview of the pros and cons of different R packages available for making interactive maps.
 
 3. To learn how to make a basic interactive map and tips for speeding up when using large datasets.
-
-#### TODO
-
-- [ ] Make a leaflet example
