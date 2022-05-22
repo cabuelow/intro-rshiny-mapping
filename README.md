@@ -21,7 +21,7 @@ Please install the following R packages and their dependencies:
 
 #### Repository contents
 
-1. Presentation slides for the tutorial: 'intro-rshiny-mapping.Rmd'
+1. Presentation slides for the tutorial: 'intro-rshiny-mapping.html'
 
 2. Script for making an interactive {leaflet} map: 'leaflet-map.R'
 
