@@ -30,7 +30,7 @@ ui <- fillPage(
   absolutePanel(top = 10, right = 10,
     selectInput('country', 'Country',
                 choices = c('Global', country),
-                selected = 'Global')),
+                selected = NULL)),
   
   leafletOutput("map", width = '100%', height = '100%')
   
@@ -40,16 +40,6 @@ ui <- fillPage(
 
 server <- function(input, output, session) {
  
-  # reactive expression
-  
-  pop2 <- reactive({
-    if(input$country != 'Global'){
-      pop %>% filter(SOV0NAME == input$country)
-    }else{
-      pop
-    }
-  }) # end reactive expression
-  
   # map 
   
   output$map <- renderLeaflet({
@@ -57,12 +47,22 @@ server <- function(input, output, session) {
       addTiles() %>% 
       addCircleMarkers(data = pop, 
                        weight = 0.1,
-                       radius = ~log(as.numeric(pop$POP_MAX)/1e3),
+                       radius = ~log(as.numeric(pop$POP_MAX)/1e5),
                        popup = pop_up) %>% 
       addPolygons(data = reefs, 
                   weight = 0.7, 
                   color = 'red')
   }) # end render leaflet
+  
+  # reactive expression
+  
+  pop2 <- reactive({
+    if(input$country == 'Global'){
+      pop 
+    }else{
+      pop %>% filter(SOV0NAME == input$country)
+    }
+  }) # end reactive expression
   
   # updated map based on user inputs
   
