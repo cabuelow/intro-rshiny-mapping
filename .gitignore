@@ -12,7 +12,7 @@
 
 # Folders
 ############
-**/[dD]ata/**
+#**/[dD]ata/**
 **/[oO][lL][dD]/**
 **/[pP]rivate/**
 **/[sS]hared/**
