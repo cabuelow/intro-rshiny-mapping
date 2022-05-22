@@ -304,7 +304,11 @@ API - Application programming interface
 
 # Leaflet example
 
+Follow the R script 'leaflet-map.R' to build an interactive {leaflet} map
 
+--
+
+Next follow the R script 'leaflet-app.R' to turn the interactive {leaflet} map in to a share-able and dynamic {shiny} web app
 
 ---
 
@@ -313,11 +317,28 @@ API - Application programming interface
 Lots of complex polygons?
 Use [rmapshaper](https://cran.r-project.org/web/packages/rmapshaper/vignettes/rmapshaper.html) to simplify, this can really **speed up** a slow map app
 
+--
+
+App still slow?
+
+Use [profvis](https://rstudio.github.io/profvis/) to profile your script and find the bottleneck
+
+--
+
 Have you reached the **'cliff of complexity'**?
 Check out [Engineering production grade shiny apps](https://engineering-shiny.org/successful-shiny-app.html)
 
+---
+
+class: center, middle, inverse
+
+# Thank-you!
+
+--
 
 ???
+
+Notes to build on for another tutorial
 - Modules
 - Caching
 -etc....
@@ -331,18 +352,6 @@ Leverage multiple R processes and/or servers.
 Async programming with promises
 
 
----
-Let's get started
-
-Open 'app.R' file
-File | New Project, then selecting New Directory and Shiny Web Application.
-
-Basics 
-shiny R package
-Define ui - (i.e. the HTML webpage human interact with)
-Define server - what can our app do?
-Execute the app (shinyApp function)
----
 # Setting up your UI
 
 Layout function fluidPage - layout function, what goes where?
@@ -354,7 +363,8 @@ How does shiny react to end-user inputs?
 Outputs. We define those in the UI too.
 
 (Fancy ways to generate HTML)
----
+
+
 # Bringing outputs to life
 
 Reactive programming = interactive
@@ -373,7 +383,6 @@ Provide a recipe for each shiny output with a specific ID.
 
 Render functions wrap up the recipe.
 
----
 
 # Duplicated code
 
