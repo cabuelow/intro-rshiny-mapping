@@ -23,12 +23,9 @@ Please install the following R packages and their dependencies:
 
 1. Presentation slides for the tutorial: 'intro-rshiny-mapping.html'
 
-2. Script for making an interactive {leaflet} map: 'leaflet-map.R'
+2. Script for making an interactive {leaflet} map: '001_leaflet-map.R'
 
-3. Script for turning the {leaflet} map into a dynamic and share-able web app: 'leaflet-app.R'
+3. Script for turning the {leaflet} map into a dynamic and share-able web app: '002_leaflet-app.R'
 
 4. Shiny cheat-sheet for helpful tips: 'shiny-cheatsheet.pdf'
 
-#### TODO
-
-- [ ] save rnaturalearth data once downloaded initially
