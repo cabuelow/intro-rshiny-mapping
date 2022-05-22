@@ -15,9 +15,9 @@
 
 Please install the following R packages and their dependencies:
 
-`install.packages(c('shiny', 'leaflet', 'sf', 'tmap', 'dplyr', 'rnaturalearth'))`
+`install.packages(c('shiny', 'leaflet', 'sf', 'tmap', 'dplyr'))`
 
-***Note** that installing spatial packages (e.g. `sf` and `rnaturalearth`) can be challenging on macs with an M1 chip and the Monterey OS*
+***Note** that installing spatial packages (e.g. `sf`) can be challenging on macs with an M1 chip and the Monterey OS*
 
 #### Repository contents
 

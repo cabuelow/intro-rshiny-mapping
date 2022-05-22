@@ -2,17 +2,15 @@ library(shiny)
 library(sf)
 library(dplyr)
 library(leaflet)
-library(rnaturalearth)
 
 # load data
 
-pop <- st_as_sf(ne_download(scale = 50, type = 'populated_places', category = 'cultural'))
-reefs <- st_as_sf(ne_download(scale = 10, type = 'reefs', category = 'physical')) %>% filter(featurecla == 'Reefs')
+pop <- st_read('data/population.gpkg')
+reefs <- st_read('data/reefs.gpkg')
 
 # pop-ups
 
 pop_up <- st_drop_geometry(pop) %>% 
-  select(NAME, SOV0NAME, POP_MAX) %>% 
   mutate(popup = paste0("<span style='font-size: 120%'><strong>", NAME ,"</strong></span><br/>",
                         "<strong>", "Country: ", "</strong>", SOV0NAME, 
                         "<br/>", 
@@ -25,27 +23,28 @@ country <- sort(unique(st_drop_geometry(pop)$SOV0NAME))
 
 # user-interface 
 
-ui <- bootstrapPage(
+ui <- fillPage(
   
   tags$style(type = "text/css", "html, body {width:100%;height:100%}"),
-
-  leafletOutput("map", width = '100%', height = '100%'),
   
   absolutePanel(top = 10, right = 10,
     selectInput('country', 'Country',
                 choices = c('Global', country),
-                selected = 'Global'))
-  ) # end bootstrap page
+                selected = 'Global')),
+  
+  leafletOutput("map", width = '100%', height = '100%')
+  
+  ) # end page
 
 # server
 
 server <- function(input, output, session) {
-  
+ 
   # reactive expression
   
-  filt_pop <- reactive({
+  pop2 <- reactive({
     if(input$country != 'Global'){
-    pop %>% filter(SOV0NAME == input$country)
+      pop %>% filter(SOV0NAME == input$country)
     }else{
       pop
     }
@@ -63,14 +62,13 @@ server <- function(input, output, session) {
       addPolygons(data = reefs, 
                   weight = 0.7, 
                   color = 'red')
-    }) # end render leaflet
+  }) # end render leaflet
   
   # updated map based on user inputs
   
   observe({
-  
-  d <- filt_pop()  
-  bounds <- unname(st_bbox(d))
+    d <- pop2()  
+    bounds <- unname(st_bbox(st_buffer(d, 1)))
   
     leafletProxy('map') %>% 
       flyToBounds(bounds[1], bounds[2], bounds[3], bounds[4])

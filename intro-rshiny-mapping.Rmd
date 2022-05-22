@@ -51,7 +51,7 @@ class: left, top
   
 --
   
-  - BUT, needs to be hosted on a server instead of directly on a web browser
+  - Need to be hosted on a web server
 
 --
 #### Server options:
@@ -84,6 +84,9 @@ What is **reactive programming**?
     - Assertive vs. passive-aggressive
 
 ???
+
+From Mastering Shiny: 
+
 In imperative programming, you issue a specific command and it’s carried out immediately. This is the style of programming you’re used to in your analysis scripts: you command R to load your data, transform it, visualise it, and save the results to disk.
 
 In declarative programming, you express higher-level goals or describe important constraints, and rely on someone else to decide how and/or when to translate that into action. This is the style of programming you use in Shiny.
@@ -302,16 +305,6 @@ API - Application programming interface
 
 ---
 
-## Leaflet example
-
-Follow the R script 'leaflet-map.R' to build an interactive {leaflet} map
-
---
-
-Next follow the R script 'leaflet-app.R' to turn the interactive {leaflet} map in to a share-able and dynamic {shiny} web app
-
----
-
 ## Tips and tricks
 
 Lots of complex polygons?
@@ -327,6 +320,16 @@ Use [profvis](https://rstudio.github.io/profvis/) to profile your script and fin
 
 Have you reached the **'cliff of complexity'**?
 Check out [Engineering production grade shiny apps](https://engineering-shiny.org/successful-shiny-app.html)
+
+---
+
+## Leaflet example
+
+Follow the R script 'leaflet-map.R' to build an interactive {leaflet} map
+
+--
+
+Next follow the R script 'leaflet-app.R' to turn the interactive {leaflet} map in to a share-able and dynamic {shiny} web app
 
 ---
 
