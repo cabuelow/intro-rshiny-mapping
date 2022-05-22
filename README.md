@@ -29,3 +29,5 @@ Please install the following R packages and their dependencies:
 
 4. Shiny cheat-sheet for helpful tips: 'shiny-cheatsheet.pdf'
 
+5. Spatial data (obtained from `rnaturalearth` R package)
+
