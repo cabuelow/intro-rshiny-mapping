@@ -17,10 +17,6 @@ pop_up <- st_drop_geometry(pop) %>%
                         "<strong>", "Max population size: ", "</strong>", POP_MAX)) %>% 
   pull(popup)
 
-# variable to zoom to country
-
-country <- sort(unique(st_drop_geometry(pop)$SOV0NAME))
-
 # user-interface 
 
 ui <- fillPage(
@@ -29,7 +25,7 @@ ui <- fillPage(
   
   absolutePanel(top = 10, right = 10,
     selectInput('country', 'Country',
-                choices = c('Global', country),
+                choices = c('No country selected', sort(unique(st_drop_geometry(pop)$SOV0NAME))),
                 selected = NULL)),
   
   leafletOutput("map", width = '100%', height = '100%')
@@ -57,11 +53,7 @@ server <- function(input, output, session) {
   # reactive expression
   
   pop2 <- reactive({
-    if(input$country == 'Global'){
-      pop 
-    }else{
       pop %>% filter(SOV0NAME == input$country)
-    }
   }) # end reactive expression
   
   # updated map based on user inputs
