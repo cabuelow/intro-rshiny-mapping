@@ -14,7 +14,7 @@ output:
 ---
 class: left, top
 
-# A journey in maps and apps...
+## A journey in maps and apps...
 
 1. The basics of programming for interactivity: *Reactivity*
 
@@ -29,7 +29,7 @@ class: left, top
 .footnote[[*] This journey is thanks to the awesome book [Mastering Shiny](https://mastering-shiny.org/index.html)]
 
 ---
-# Why interactive and why Shiny?
+## Why interactive and why Shiny?
 
 --
 #### Open Science
@@ -59,7 +59,7 @@ class: left, top
   - [See here for more info on Rshiny servers](https://shiny.rstudio.com/articles/shiny-server.html)
   - There are other 'non-R' server options out there too
 ---
-# App fundamentals
+## App fundamentals
 
 Interactivity requires *Reactivity*
 
@@ -93,7 +93,7 @@ With imperative code you say “Make me a sandwich”8. With declarative code yo
 lazy and cached: minimal set of computations to update ouputs based on inputs
 ---
 
-# Shiny
+## Shiny
 
 {shiny} provides a framework for **reactive programming**:
   - User-interface (ui): how it looks. Takes *inputs* and displays *outputs*
@@ -126,14 +126,14 @@ shinyApp(ui, server)
 * Run the example in the cheet sheet, just to show how a basic app works
 ---
 
-# A simple histogram
+## A simple histogram
 
 ```{r}
 hist(rnorm(25))
 ```
 ---
 
-# A reactive histogram
+## A reactive histogram
 
 ```{r}
 library(shiny)
@@ -160,7 +160,7 @@ One more important thing about input: it’s selective about who is allowed to r
 There’s one more important component that you’ll see in the reactive graph: the reactive expression. We’ll come back to reactive expressions in detail very shortly; for now think of them as a tool that reduces duplication in your reactive code by introducing additional nodes into the reactive graph.
 ---
 
-# But what about maps?
+## But what about maps?
 
 My go-to for mapping in R these days is {tmap}
 
@@ -174,7 +174,7 @@ tmap_mode('view')
 qtm(World, 'name') # qtm stands for 'quick thematic mapper'
 ```
 ---
-# Share with shiny
+## Share with shiny
 
 If we're in a hurry, we can put our interactive {tmap} in a {shiny} app to share
 
@@ -196,7 +196,7 @@ shinyApp(ui, server)
 ```
 
 ---
-# Add some reactivity
+## Add some reactivity
 
 Let's add a widget to allow users to choose their country from a list
 
@@ -229,7 +229,7 @@ shinyApp(ui, server)
 
 ---
 
-# Customising and scaling your interactive map
+## Customising and scaling your interactive map
 
 If you want to **customise** your map with more *features*, the [leaflet](https://rstudio.github.io/leaflet/) R package offers some nice functionality (there are others too)
 
@@ -302,7 +302,7 @@ API - Application programming interface
 
 ---
 
-# Leaflet example
+## Leaflet example
 
 Follow the R script 'leaflet-map.R' to build an interactive {leaflet} map
 
@@ -312,7 +312,7 @@ Next follow the R script 'leaflet-app.R' to turn the interactive {leaflet} map i
 
 ---
 
-# Tips and tricks
+## Tips and tricks
 
 Lots of complex polygons?
 Use [rmapshaper](https://cran.r-project.org/web/packages/rmapshaper/vignettes/rmapshaper.html) to simplify, this can really **speed up** a slow map app
