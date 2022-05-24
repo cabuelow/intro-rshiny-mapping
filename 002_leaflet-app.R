@@ -21,12 +21,11 @@ pop_up <- st_drop_geometry(pop) %>%
 
 ui <- fillPage(
   
-  tags$style(type = "text/css", "html, body {width:100%;height:100%}"),
-  
   absolutePanel(top = 10, right = 10,
-    selectInput('country', 'Country',
-                choices = c('No country selected', sort(unique(st_drop_geometry(pop)$SOV0NAME))),
-                selected = NULL)),
+  selectInput('country', 'Country',
+                choices = c('Global', sort(unique(st_drop_geometry(pop)$SOV0NAME))),
+                selected = NULL)
+  ),# end absolute panel
   
   leafletOutput("map", width = '100%', height = '100%')
   
@@ -37,7 +36,6 @@ ui <- fillPage(
 server <- function(input, output, session) {
  
   # map 
-  
   output$map <- renderLeaflet({
     leaflet() %>% 
       addTiles() %>% 
@@ -50,20 +48,18 @@ server <- function(input, output, session) {
                   color = 'red')
   }) # end render leaflet
   
-  # reactive expression
-  
-  pop2 <- reactive({
-      pop %>% filter(SOV0NAME == input$country)
-  }) # end reactive expression
-  
   # updated map based on user inputs
   
   observe({
-    d <- pop2()  
-    bounds <- unname(st_bbox(st_buffer(d, 1)))
-  
-    leafletProxy('map') %>% 
-      flyToBounds(bounds[1], bounds[2], bounds[3], bounds[4])
+    if(input$country == 'Global'){
+      bounds <- unname(st_bbox(pop))
+      leafletProxy('map') %>% 
+        flyToBounds(bounds[1], bounds[2], bounds[3], bounds[4])
+    }else{
+      bounds <- unname(st_bbox(st_buffer((pop %>% filter(SOV0NAME == input$country)), 1)))
+      leafletProxy('map') %>% 
+        flyToBounds(bounds[1], bounds[2], bounds[3], bounds[4])
+    }
   }) # end observe
   
 } # end server

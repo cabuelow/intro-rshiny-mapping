@@ -155,7 +155,7 @@ server <- function(input, output, session) {
 shinyApp(ui, server)
 ```
 --
-.footnote[[ ] Later, we'll briefly look an additional reactive tool, *reactive expressions*. *Reactive expressions* can be used to eliminate redundant code in your app, thereby improving efficiency. Find more information [here](https://mastering-shiny.org/reactivity-intro.html). ]
+.footnote[[ ] There's an additional reactive tool, *reactive expressions*. *Reactive expressions* can be used to eliminate redundant code in your app, thereby improving efficiency. Find more information [here](https://mastering-shiny.org/reactivity-intro.html). ]
 
 ???
 One more important thing about input: it’s selective about who is allowed to read it. To read from an input, you must be in a reactive context created by a function like renderText() or reactive().
@@ -246,7 +246,7 @@ If you want to **customise** your map with more *features*, the [leaflet](https:
 
 --
 
-**Scaling-up** your map app will require graphics to be rendered in **'WebGL'** instead of SVG
+**Scaling-up** your map app might require graphics to be rendered in **'WebGL'** instead of SVG
 
 --
 

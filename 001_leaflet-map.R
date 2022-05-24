@@ -1,6 +1,6 @@
 library(sf)
 library(dplyr)
-library(leaflet) # javascript library for interactive maps
+library(leaflet)
 
 # make an interactive leaflet map
 
