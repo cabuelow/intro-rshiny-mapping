@@ -21,7 +21,7 @@ pop_up <- st_drop_geometry(pop) %>%
 
 ui <- fillPage(
   
-  absolutePanel(top = 10, right = 10,
+  absolutePanel(top = 10, right = 10, draggable = T,
   selectInput('country', 'Country',
                 choices = c('Global', sort(unique(st_drop_geometry(pop)$SOV0NAME))),
                 selected = NULL)
