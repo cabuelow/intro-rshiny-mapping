@@ -1,0 +1,60 @@
+library(sf)
+library(dplyr)
+library(leaflet)
+library(shiny)
+
+# read in spatial data
+
+pop <- st_read('data/population.gpkg')
+reefs <- st_read('data/reefs.gpkg')
+
+# add some pop-ups
+
+pop_up <- st_drop_geometry(pop) %>% 
+  mutate(popup = paste0("<span style='font-size: 120%'><strong>", NAME ,"</strong></span><br/>",
+                        "<strong>", "Country: ", "</strong>", SOV0NAME, 
+                        "<br/>", 
+                        "<strong>", "Max population size: ", "</strong>", POP_MAX)) %>% 
+  pull(popup)
+
+# make user interface with fillPage and absolute panel
+
+ui <- fluidPage(
+  selectInput('var', 'Select Country', 
+              choices = c('Global', sort(unique(pop$SOV0NAME))),
+              selected = 'Global'),
+  leafletOutput('map')
+)
+
+# make server
+
+# update based on user inputs with an observe and fly
+
+server <- function(input, output, session) {
+  output$map <- renderLeaflet({
+    leaflet() %>% 
+      addTiles() %>% 
+      addCircleMarkers(data = pop,
+                       weight = 0.5,
+                       radius = ~log(as.numeric(pop$POP_MAX)/1e5),
+                       popup = pop_up) %>% 
+      addPolygons(data = reefs,
+                  color = 'red',
+                  weight = 0.5)
+  })
+  
+  observe({
+    
+    if(input$var == 'Global'){
+    bounds <- unname(st_bbox(pop))
+    leafletProxy('map') %>% 
+      flyToBounds(bounds[1], bounds[2], bounds[3], bounds[4])
+    }else{
+      bounds <- unname(st_bbox(filter(pop, SOV0NAME == input$var)))
+      leafletProxy('map') %>% 
+        flyToBounds(bounds[1], bounds[2], bounds[3], bounds[4])
+    }
+  })
+}
+
+shinyApp(ui, server)

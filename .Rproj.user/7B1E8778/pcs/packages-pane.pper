@@ -1,0 +1,7 @@
+{
+    "installOptions": {
+        "installFromRepository": true,
+        "libraryPath": "/Users/s2988833/Library/R/x86_64/4.2/library",
+        "installDependencies": true
+    }
+}

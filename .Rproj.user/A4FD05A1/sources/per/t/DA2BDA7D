@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1652477252573.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1596126469",
+    "id" : "DA2BDA7D",
+    "lastKnownWriteTime" : 1653434675,
+    "last_content_update" : 1653434675,
+    "path" : "~/Dropbox/rshiny-mapping/intro-rshiny-mapping.Rmd",
+    "project_path" : "intro-rshiny-mapping.Rmd",
+    "properties" : {
+        "cursorPosition" : "121,0",
+        "docOutlineVisible" : "0",
+        "scrollLine" : "107"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}
