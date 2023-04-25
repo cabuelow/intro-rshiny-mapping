@@ -3,6 +3,8 @@
 ##### RLadies Brisbane
 ##### May 26, 2022
 
+Watch the [youtube recording of the tutorial here](https://www.youtube.com/watch?v=aBoQ0rcY_NU&t=2152s)
+
 #### Aims
 
 1. To show how Rshiny can open our science to end-users by allowing them to engage interactively with research outputs in web applications.
